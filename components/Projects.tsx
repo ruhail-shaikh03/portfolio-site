@@ -8,7 +8,7 @@ type Props = { projects: Project[] };
 export default function Projects({ projects }: Props) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      initial={false}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
       className=" h-screen relative flex overflow-hidden flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0"
@@ -24,12 +24,12 @@ export default function Projects({ projects }: Props) {
             className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-10 md:p-44 h-screen"
           >
             <motion.img
-              initial={{ y: -100, opacity: 0 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2 }}
               viewport={{ once: true }}
               className=" h-28 xl:h-80 md:h-72 object-contain"
-              src={urlFor(project?.image).url()}
+              src={project?.image ? urlFor(project.image).url() : ""}
               alt=""
             />
 
@@ -41,11 +41,11 @@ export default function Projects({ projects }: Props) {
                 {project?.title}
               </h4>
               <div className="flex items-center space-x-2 justify-center ">
-                {project?.technologies.map((technology) => (
+                {project?.technologies?.map((technology) => (
                   <img
                     key={technology._id}
                     className="h-10 w-10 rounded-full object-cover"
-                    src={urlFor(technology?.image).url()}
+                    src={technology?.image ? urlFor(technology.image).url() : ""}
                     alt=""
                   />
                 ))}

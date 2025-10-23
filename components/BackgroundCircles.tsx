@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -6,9 +7,7 @@ type Props = {};
 export default function BackgroundCircles({}: Props) {
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-      }}
+      initial={false}
       animate={{
         scale: [1, 2, 2, 3, 1],
         opacity: [0.1, 0.2, 0.4, 0.8, 0.1, 1.0],

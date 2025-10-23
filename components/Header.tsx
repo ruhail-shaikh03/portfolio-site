@@ -12,11 +12,7 @@ export default function Header({ socials }: Props) {
   return (
     <header className="sticky top-0 p-5 flex items-start justify-between max-w-7xl mx-auto z-20 xl:items-center">
       <motion.div
-        initial={{
-          x: -500,
-          opacity: 0,
-          scale: 0.5,
-        }}
+        initial={false}
         animate={{
           x: 0,
           opacity: 1,
@@ -40,11 +36,7 @@ export default function Header({ socials }: Props) {
 
       <Link href="#contact">
         <motion.div
-          initial={{
-            x: 500,
-            opacity: 0.5,
-            scale: 0.5,
-          }}
+          initial={false}
           animate={{
             x: 0,
             opacity: 1,

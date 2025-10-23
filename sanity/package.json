@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "package.json",
-  "author": "Mitchell Sparrow <mitch.sparrow@hotmail.com>",
+  "author": "Ruhailell Rizwan <Ruhail.Rizwan@hotmail.com>",
   "license": "UNLICENSED",
   "scripts": {
     "start": "sanity start",
@@ -31,6 +31,6 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git@github.com:MitchellSparrow/portfolioWebsite.git"
+    "url": "git@github.com:RuhailellRizwan/portfolioWebsite.git"
   }
 }

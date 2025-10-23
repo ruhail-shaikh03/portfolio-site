@@ -8,7 +8,7 @@ type Props = { experiences: Experience[] };
 export default function WorkExperience({ experiences }: Props) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      initial={false}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
       className="h-screen  flex relative overflow-hidden flex-col text-left md:flex-row max-w-full px-10 justify-evenly mx-auto items-center"
@@ -22,9 +22,10 @@ export default function WorkExperience({ experiences }: Props) {
         {experiences
           ?.slice() // make a shallow copy so we don't mutate the original array
           .sort(
-            (a, b) =>
-              new Date(b.dateStarted).getTime() -
-              new Date(a.dateStarted).getTime()
+            (a, b) => {
+              const d = new Date(b.dateStarted).getTime() - new Date(a.dateStarted).getTime();
+              return d !== 0 ? d : a._id.localeCompare(b._id);
+            }
           )
           .map((experience) => (
             <ExperienceCard key={experience._id} experience={experience} />

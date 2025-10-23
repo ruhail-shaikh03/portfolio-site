@@ -8,7 +8,7 @@ type Props = { pageInfo: PageInfo };
 export default function About({ pageInfo }: Props) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      initial={false}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
       className="flex flex-col relative h-screen text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center"
@@ -18,10 +18,7 @@ export default function About({ pageInfo }: Props) {
       </h3>
 
       <motion.img
-        initial={{
-          x: -200,
-          opacity: 0,
-        }}
+        initial={false}
         transition={{
           duration: 1.2,
         }}
@@ -31,7 +28,7 @@ export default function About({ pageInfo }: Props) {
         }}
         viewport={{ once: true }}
         className=" -mb-24 md:mb-0 flex-shrink-0 w-52 h-52 rounded-full object-cover md:rounded-lg md:w-64 md:h-95 xl:w-[500px] xl:h-[600px]"
-        src={urlFor(pageInfo?.profilePic).url()}
+        src={pageInfo?.profilePic ? urlFor(pageInfo.profilePic).url() : ""}
       />
       <div className="space-y-5 md:space-y-10 px-0 md:px-10">
         <h4 className="text-xl md:text-4xl font-semibold">
