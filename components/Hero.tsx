@@ -5,6 +5,7 @@ import { Cursor, useTypewriter } from "react-simple-typewriter";
 import { urlFor } from "../sanity";
 import { PageInfo } from "../typings";
 import BackgroundCircles from "./BackgroundCircles";
+import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 
 type Props = { pageInfo: PageInfo };
 

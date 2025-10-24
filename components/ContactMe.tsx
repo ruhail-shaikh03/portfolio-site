@@ -2,8 +2,11 @@
 import React from "react";
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { PageInfo } from "../typings";
 
-type Props = {};
+type Props = {
+  pageInfo?: PageInfo;
+};
 
 type Inputs = {
   name: string;
@@ -12,7 +15,7 @@ type Inputs = {
   message: string;
 };
 
-export default function ContactMe({}: Props) {
+export default function ContactMe({ pageInfo }: Props) {
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (formData) => {
     window.location.href = `mailto:Ruhailrizwan@gmail.com?subject=${formData.subject}&body=Hi, my name is ${formData.name}.${formData.message}`;
@@ -28,6 +31,7 @@ export default function ContactMe({}: Props) {
           I have got just what you need.{" "}
           <span className="decoration-darkGreen/50 underline">Lets talk.</span>
         </h4>
+
 
         <div className="space-y-1 md:space-y-3 lg:space-y-3 xl:space-y-3 2xl:space-y-5">
           <div className="flex items-center space-x-5 justify-center">
