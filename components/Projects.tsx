@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { urlFor } from "../sanity";
 import { Project } from "../typings";
+import { PortableText } from "@portabletext/react";
 
 type Props = { projects: Project[] };
 
@@ -21,7 +22,8 @@ export default function Projects({ projects }: Props) {
         {projects?.map((project, i) => (
           <div
             key={project._id}
-            className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-10 md:p-44 h-screen"
+            className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-10 md:p-44 h-screen cursor-pointer hover:bg-darkGreen/5 transition-colors duration-300"
+            onClick={() => project.linkToBuild && window.open(project.linkToBuild, '_blank')}
           >
             <motion.img
               initial={false}
@@ -39,21 +41,36 @@ export default function Projects({ projects }: Props) {
                   Project {i + 1}:
                 </span>{" "}
                 {project?.title}
+                {project?.linkToBuild && (
+                  <span className="text-sm text-darkGreen/70 ml-2">(Click to view)</span>
+                )}
               </h4>
-              <div className="flex items-center space-x-2 justify-center ">
-                {project?.technologies?.map((technology) => (
-                  <img
-                    key={technology._id}
-                    className="h-10 w-10 rounded-full object-cover"
-                    src={technology?.image ? urlFor(technology.image).url() : ""}
-                    alt=""
-                  />
-                ))}
-              </div>
 
-              <p className="text-sm md:text-md lg:text-lg text-justify ">
-                {project?.summary}
-              </p>
+              <div className="text-sm md:text-md lg:text-lg text-justify">
+                <PortableText 
+                  value={project?.summary} 
+                  components={{
+                    block: {
+                      normal: ({children}) => <p className="mb-2">{children}</p>,
+                      h2: ({children}) => <h2 className="text-xl md:text-2xl font-bold mb-3 mt-4 text-darkGreen">{children}</h2>,
+                      h3: ({children}) => <h3 className="text-lg md:text-xl font-semibold mb-2 mt-3 text-darkGreen">{children}</h3>,
+                    },
+                    list: {
+                      bullet: ({children}) => <ul className="list-disc list-inside mb-3 space-y-1">{children}</ul>,
+                      number: ({children}) => <ol className="list-decimal list-inside mb-3 space-y-1">{children}</ol>,
+                    },
+                    listItem: {
+                      bullet: ({children}) => <li className="ml-4">{children}</li>,
+                      number: ({children}) => <li className="ml-4">{children}</li>,
+                    },
+                    marks: {
+                      strong: ({children}) => <strong className="font-bold text-darkGreen">{children}</strong>,
+                      em: ({children}) => <em className="italic">{children}</em>,
+                      code: ({children}) => <code className="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono">{children}</code>,
+                    }
+                  }}
+                />
+              </div>
             </div>
           </div>
         ))}

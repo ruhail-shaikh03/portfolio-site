@@ -20,8 +20,37 @@ export default {
     {
       name: 'summary',
       title: 'Summary',
-      type: 'text',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          // 1. STYLES: Define paragraph/heading styles allowed
+          styles: [
+            {title: 'Normal', value: 'normal'},
+            {title: 'H2', value: 'h2'},
+            {title: 'H3', value: 'h3'},
+            // You can add more here
+          ],
+          // 2. LISTS: Define the types of lists allowed
+          lists: [
+            {title: 'Bullet', value: 'bullet'}, // <--- FIX: Re-enables bullet points
+            {title: 'Numbered', value: 'number'}  // <--- FIX: Re-enables numbered lists
+          ],
+          marks: {
+            // 3. DECORATORS: Define inline formatting like bold/italic
+            decorators: [
+              {title: 'Strong', value: 'strong'}, // <--- FIX: Re-enables Bold
+              {title: 'Emphasis', value: 'em'},     // <--- FIX: Re-enables Italic
+              {title: 'Code', value: 'code'}        // Common to add code formatting
+              // You can also add {title: 'Soft Break', value: 'br'} if you want a dedicated soft break button
+            ],
+            annotations: []
+          }
+        }
+        // Add other types here if you want things like images, quotes, or code blocks inline
+      ]
     },
+
     {
       name: 'technologies',
       title: 'Technologies',

@@ -58,7 +58,7 @@ export interface Project extends SanityBody {
     title: string;
     linkToBuild: string;
     image: Image;
-    summary: string;
+    summary: any[]; // Block content array
     technologies: Technology[];
 }
 
