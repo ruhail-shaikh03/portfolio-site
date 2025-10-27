@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Add the scrollbar-hide utility manually */
+@layer utilities {
+  .scrollbar-hide {
+    /* Firefox */
+    scrollbar-width: none;
+    /* Safari and Chrome */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
 @layer components {
   .heroButton {
     @apply px-3 md:px-6 py-2 border border-lightBackground rounded-full uppercase text-xs tracking-widest text-gray-500 transition-all hover:border-darkGreen/40 hover:text-darkGreen/40;

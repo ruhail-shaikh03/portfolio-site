@@ -13,10 +13,6 @@ export default function About({ pageInfo }: Props) {
       transition={{ duration: 1.5 }}
       className="flex flex-col relative h-screen text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center"
     >
-      <h3 className="absolute top-20 md:top-24 uppercase tracking-[20px] text-gray-500 text-xl md:text-2xl">
-        About
-      </h3>
-
       <motion.img
         initial={false}
         transition={{
@@ -27,10 +23,14 @@ export default function About({ pageInfo }: Props) {
           opacity: 1,
         }}
         viewport={{ once: true }}
-        className=" -mb-24 md:mb-0 flex-shrink-0 w-52 h-52 rounded-full object-cover md:rounded-lg md:w-64 md:h-95 xl:w-[500px] xl:h-[600px]"
+        className="-mb-20 md:mb-0 flex-shrink-0 w-48 h-48 rounded-full object-cover md:rounded-lg md:w-64 md:h-95 xl:w-[400px] xl:h-[500px]"
         src={pageInfo?.profilePic ? urlFor(pageInfo.profilePic).url() : ""}
       />
-      <div className="space-y-5 md:space-y-10 px-0 md:px-10">
+
+      <div className="flex flex-col items-center md:items-start space-y-5 md:space-y-10 px-0 md:px-10">
+        <h3 className="uppercase tracking-[20px] text-gray-500 text-xl md:text-2xl">
+          About
+        </h3>
         <h4 className="text-xl md:text-4xl font-semibold">
           Here is a{" "}
           <span className=" underline decoration-darkGreen/50">little</span>{" "}
