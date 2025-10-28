@@ -30,11 +30,7 @@ export default function Header({ socials }: Props) {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled 
-          ? "backdrop-blur-md bg-navy-900/80 border-b border-cyan-500/10 shadow-soft-lg" 
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 backdrop-blur-md bg-navy-dark/80 border-b border-navy-light shadow-md"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -47,8 +43,8 @@ export default function Header({ socials }: Props) {
         >
           <Link href="#hero">
             <motion.div
-              className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-aqua-400 cursor-pointer"
-              whileHover={{ textShadow: "0 0 20px rgba(0, 217, 255, 0.5)" }}
+              className="text-xl font-bold text-mint-green cursor-pointer"
+              whileHover={{ textShadow: "0 0 20px rgba(100, 255, 218, 0.5)" }}
             >
               Ruhail
             </motion.div>
@@ -65,13 +61,12 @@ export default function Header({ socials }: Props) {
           {navLinks.map((link, idx) => (
             <Link key={link.href} href={link.href}>
               <motion.div
-                className="relative text-sm uppercase tracking-widest text-slate-300 cursor-pointer group"
-                whileHover={{ color: "#00D9FF" }}
+                className="relative text-sm uppercase tracking-widest text-ice-white cursor-pointer group font-medium hover:text-mint-green transition-colors"
                 transition={{ duration: 0.3 }}
               >
                 {link.label}
                 <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-aqua-400"
+                  className="absolute bottom-0 left-0 h-0.5 bg-mint-green"
                   initial={{ width: 0 }}
                   whileHover={{ width: "100%" }}
                   transition={{ duration: 0.3 }}
@@ -109,8 +104,8 @@ export default function Header({ socials }: Props) {
           {/* Contact Button */}
           <Link href="#contact">
             <motion.button
-              className="ml-2 md:ml-4 px-4 md:px-6 py-2 rounded-full text-sm font-medium text-white bg-gradient-to-r from-cyan-500 to-aqua-500 hover:shadow-glow-md transition-all duration-300"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0, 217, 255, 0.6)" }}
+              className="ml-2 md:ml-4 px-4 md:px-6 py-2 rounded-full text-sm font-medium text-text-dark bg-mint-green hover:opacity-90 transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Contact
@@ -119,14 +114,7 @@ export default function Header({ socials }: Props) {
         </motion.div>
       </div>
 
-      {/* Mobile Menu Indicator */}
-      <motion.div
-        className="md:hidden flex justify-center pb-2"
-        animate={{ opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <p className="text-xs text-slate-500 uppercase tracking-widest">Scroll to explore</p>
-      </motion.div>
+
     </motion.header>
   );
 }

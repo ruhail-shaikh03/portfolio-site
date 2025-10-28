@@ -15,7 +15,7 @@ export default function About({ pageInfo }: Props) {
 
   return (
     <motion.section
-      className="relative min-h-screen flex items-center justify-center py-20 md:py-0 px-4 sm:px-6 lg:px-8"
+      className="relative py-12 px-4 sm:px-6 lg:px-8 bg-navy-dark"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -23,12 +23,82 @@ export default function About({ pageInfo }: Props) {
     >
       {/* Gradient background accent */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-aqua-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-mint-green/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-mint-green/3 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        {/* Mobile: Centered layout with small picture */}
+        <div className="lg:hidden flex flex-col items-center text-center space-y-5 mb-6 px-4">
+          {/* Profile Pic */}
+          <motion.img
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="rounded-lg h-40 w-40 object-cover object-center"
+            src={pageInfo?.profilePic ? urlFor(pageInfo.profilePic).url() : ""}
+            alt={pageInfo?.name}
+          />
+
+          {/* Content for Mobile */}
+          <motion.div
+            className="flex flex-col items-center space-y-4 w-full"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {/* Section label */}
+            <motion.div variants={fadeInUpVariants}>
+              <p className="uppercase tracking-[3px] text-mint-green text-xs font-semibold mb-2">
+                About
+              </p>
+            </motion.div>
+
+            {/* Heading */}
+            <motion.h2
+              variants={fadeInUpVariants}
+              className="text-xl font-bold text-ice-white leading-tight mb-3"
+            >
+              Here is a{" "}
+              <span className="text-mint-green">
+                little
+              </span>{" "}
+              background
+            </motion.h2>
+
+            {/* Description */}
+            <motion.p
+              variants={fadeInUpVariants}
+              className="text-xs text-text-medium leading-relaxed mb-2"
+            >
+              {pageInfo?.backgroundInformation}
+            </motion.p>
+
+            {/* CTA Button */}
+            <motion.div variants={fadeInUpVariants} className="pt-2">
+              <motion.a
+                href="#contact"
+                className="inline-flex items-center px-4 py-1.5 rounded-lg font-medium text-text-dark bg-mint-green hover:opacity-90 transition-all duration-300 text-xs"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Get to Know Me Better
+                <motion.span
+                  className="ml-1.5"
+                  animate={{ x: [0, 3, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  →
+                </motion.span>
+              </motion.a>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Desktop: Side-by-side layout */}
+        <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image Section */}
           <motion.div
             className="flex justify-center lg:justify-start"
@@ -61,7 +131,7 @@ export default function About({ pageInfo }: Props) {
                 transition={{ duration: 0.3 }}
               >
                 <img
-                  className="w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto object-cover"
+                  className="w-full max-w-md md:max-w-lg lg:max-w-2xl h-auto object-cover max-h-[650px]"
                   src={pageInfo?.profilePic ? urlFor(pageInfo.profilePic).url() : ""}
                   alt={pageInfo?.name}
                 />
@@ -113,18 +183,18 @@ export default function About({ pageInfo }: Props) {
           >
             {/* Section label */}
             <motion.div variants={fadeInUpVariants}>
-              <p className="uppercase tracking-[3px] text-cyan-400 text-xs font-semibold">
-                About Me
+              <p className="uppercase tracking-[3px] text-mint-green text-xs font-semibold">
+                About
               </p>
             </motion.div>
 
             {/* Heading */}
             <motion.h2
               variants={fadeInUpVariants}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-ice-white leading-tight"
             >
               Here is a{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-aqua-400">
+              <span className="text-mint-green">
                 little
               </span>{" "}
               background
@@ -133,39 +203,16 @@ export default function About({ pageInfo }: Props) {
             {/* Description */}
             <motion.p
               variants={fadeInUpVariants}
-              className="text-base md:text-lg text-slate-300 leading-relaxed max-w-xl"
+              className="text-base md:text-lg text-text-medium leading-relaxed max-w-xl"
             >
               {pageInfo?.backgroundInformation}
             </motion.p>
 
-            {/* Quick Stats/Skills teaser */}
-            <motion.div
-              variants={fadeInUpVariants}
-              className="grid grid-cols-3 gap-6 pt-4"
-            >
-              {[
-                { label: "AI Engineer", value: "Senior" },
-                { label: "Experience", value: "5+ Yrs" },
-                { label: "Projects", value: "50+" },
-              ].map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  className="glass rounded-xl p-4 text-center"
-                  whileHover={{ y: -4, boxShadow: "0 0 20px rgba(0, 217, 255, 0.3)" }}
-                >
-                  <p className="text-2xl font-bold text-cyan-400">{stat.value}</p>
-                  <p className="text-xs text-slate-400 uppercase tracking-wide mt-1">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
-
             {/* CTA Button */}
-            <motion.div variants={fadeInUpVariants} className="pt-4">
+            <motion.div variants={fadeInUpVariants} className="pt-2">
               <motion.a
                 href="#contact"
-                className="inline-flex items-center px-8 py-3 rounded-lg font-medium text-white bg-gradient-to-r from-cyan-500 to-aqua-500 hover:shadow-glow-lg transition-all duration-300"
+                className="inline-flex items-center px-8 py-3 rounded-lg font-medium text-text-dark bg-mint-green hover:opacity-90 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

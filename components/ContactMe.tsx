@@ -74,7 +74,7 @@ export default function ContactMe({ pageInfo }: Props) {
 
   return (
     <motion.section
-      className="relative min-h-screen flex flex-col items-center justify-center py-20 md:py-0 px-4 sm:px-6 lg:px-8"
+      className="relative py-12 px-4 sm:px-6 lg:px-8 bg-navy-dark"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -82,91 +82,94 @@ export default function ContactMe({ pageInfo }: Props) {
     >
       {/* Gradient background accents */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-aqua-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-mint-green/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-mint-green/3 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-5xl w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="max-w-5xl w-full mx-auto">
+        {/* Centered Header */}
+        <motion.div
+          className="text-center mb-8 lg:mb-12 w-full"
+          variants={fadeInUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <p className="text-xs md:text-sm uppercase tracking-[3px] text-mint-green font-semibold mb-2 md:mb-4">
+            Get In Touch
+          </p>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl lg:text-6xl font-bold text-ice-white leading-tight mb-2 md:mb-4">
+            Let's work <span className="text-mint-green">together</span>
+          </h2>
+          <p className="text-xs md:text-base lg:text-lg text-text-medium max-w-2xl mx-auto px-2">
+            I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 lg:gap-16 items-start">
           {/* Left Column - Contact Info */}
           <motion.div
-            className="space-y-8"
+            className="space-y-3 lg:space-y-4"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {/* Header */}
-            <motion.div variants={fadeInUpVariants} className="space-y-4">
-              <p className="text-xs md:text-sm uppercase tracking-[3px] text-cyan-400 font-semibold">
-                Get In Touch
-              </p>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                Let's work <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-aqua-400">together</span>
-              </h2>
-              <p className="text-lg text-slate-300">
-                I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
-              </p>
-            </motion.div>
-
-            {/* Contact Information Cards */}
-            <motion.div className="space-y-4" variants={containerVariants}>
               {contactInfo.map((info, idx) => {
                 const Icon = info.icon;
                 return (
                   <motion.div
                     key={idx}
-                    className="glass rounded-lg p-4 flex items-start gap-4 hover:shadow-glow-sm transition-all duration-300"
+                    className="glass rounded-lg p-3 md:p-4 flex items-start gap-3 md:gap-4 hover:shadow-glow-sm transition-all duration-300 bg-navy-light/40 border border-mint-green/20"
                     variants={fadeInUpVariants}
-                    whileHover={{ y: -4, boxShadow: "0 0 20px rgba(0, 217, 255, 0.3)" }}
+                    whileHover={{ y: -4, boxShadow: "0 0 20px rgba(100, 255, 218, 0.3)" }}
                   >
                     <motion.div
-                      className="flex-shrink-0 p-3 bg-gradient-to-br from-cyan-500/20 to-aqua-500/20 rounded-lg"
+                      className="flex-shrink-0 p-2 md:p-3 bg-mint-green/10 rounded-lg"
                       whileHover={{ rotate: 10 }}
                     >
-                      <Icon className="h-6 w-6 text-cyan-400" />
+                      <Icon className="h-5 w-5 md:h-6 md:w-6 text-mint-green" />
                     </motion.div>
                     <div>
-                      <p className="text-sm text-slate-400 uppercase tracking-wide font-semibold">
+                      <p className="text-xs md:text-sm text-ice-white uppercase tracking-wide font-semibold">
                         {info.label}
                       </p>
-                      <p className="text-white font-medium mt-1">{info.value}</p>
+                      <p className="text-text-medium font-medium mt-0.5 md:mt-1 text-xs md:text-sm">{info.value}</p>
                     </div>
                   </motion.div>
                 );
               })}
-            </motion.div>
           </motion.div>
 
           {/* Right Column - Form */}
           <motion.div
-            className="glass-lg rounded-2xl p-8 md:p-10 space-y-6"
+            className="bg-navy-light/40 border border-mint-green/20 rounded-2xl p-4 md:p-8 md:p-10 space-y-4 md:space-y-6"
             variants={scaleInVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-white">Send me a message</h3>
+            <h3 className="text-lg md:text-2xl font-bold text-ice-white">Send me a message</h3>
 
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="space-y-4"
+              className="space-y-3 md:space-y-4"
             >
               {/* Name and Email Row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                 <motion.div
                   variants={fadeInUpVariants}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
                 >
-                  <label className="block text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-semibold text-mint-green uppercase tracking-wider mb-1 md:mb-2">
                     Name
                   </label>
                   <motion.input
                     {...register("name", { required: true })}
                     placeholder="Your name"
-                    className="input-glow w-full"
+                    className="input-glow w-full text-sm"
                     type="text"
                     variants={inputFocusVariants}
                     initial="unfocused"
@@ -181,7 +184,7 @@ export default function ContactMe({ pageInfo }: Props) {
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 }}
                 >
-                  <label className="block text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-semibold text-mint-green uppercase tracking-wider mb-2">
                     Email
                   </label>
                   <motion.input
@@ -204,7 +207,7 @@ export default function ContactMe({ pageInfo }: Props) {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
-                <label className="block text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-semibold text-mint-green uppercase tracking-wider mb-2">
                   Subject
                 </label>
                 <motion.input
@@ -226,7 +229,7 @@ export default function ContactMe({ pageInfo }: Props) {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <label className="block text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-semibold text-mint-green uppercase tracking-wider mb-2">
                   Message
                 </label>
                 <motion.textarea
@@ -250,7 +253,7 @@ export default function ContactMe({ pageInfo }: Props) {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting || isSuccess}
-                  className="w-full py-3 px-6 bg-gradient-to-r from-cyan-500 to-aqua-500 text-white font-semibold rounded-lg hover:shadow-glow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full py-3 px-6 bg-mint-green text-text-dark font-semibold rounded-lg hover:bg-mint-green/90 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >

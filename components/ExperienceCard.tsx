@@ -32,7 +32,7 @@ export default function ExperienceCard({ experience, index = 0 }: Props) {
         whileHover={{ scale: 1.1, rotate: 5 }}
       >
         <motion.img
-          className="w-20 h-20 md:w-28 md:h-28 rounded-full object-cover border-2 border-cyan-500/50 shadow-glow-md"
+          className="h-16 md:h-20 lg:h-24 object-contain"
           src={experience?.companyImage ? urlFor(experience.companyImage).url() : ""}
           alt={`${experience?.company} logo`}
           initial={{ opacity: 0, scale: 0.8 }}
@@ -63,7 +63,7 @@ export default function ExperienceCard({ experience, index = 0 }: Props) {
         {/* Job Title */}
         <motion.h4
           variants={fadeInUpVariants}
-          className="text-xl md:text-2xl font-bold text-white"
+          className="text-xl md:text-2xl font-bold text-slate-800"
         >
           {experience?.jobTitle}
         </motion.h4>
@@ -71,7 +71,7 @@ export default function ExperienceCard({ experience, index = 0 }: Props) {
         {/* Company Name */}
         <motion.p
           variants={fadeInUpVariants}
-          className="text-base md:text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-aqua-400"
+          className="text-base md:text-lg font-semibold text-cyan-500"
         >
           {experience?.company}
         </motion.p>
@@ -79,7 +79,7 @@ export default function ExperienceCard({ experience, index = 0 }: Props) {
         {/* Date Range */}
         <motion.p
           variants={fadeInUpVariants}
-          className="text-sm text-slate-400 uppercase tracking-wider"
+          className="text-sm text-slate-600 uppercase tracking-wider"
         >
           {new Date(experience?.dateStarted).toLocaleDateString(undefined, {
             year: "numeric",
@@ -134,7 +134,7 @@ export default function ExperienceCard({ experience, index = 0 }: Props) {
           className="max-h-64 overflow-y-auto scrollbar-thin pt-4"
           variants={containerVariants}
         >
-          <ul className="list-disc space-y-2 text-slate-300 text-sm md:text-base text-left pl-5 pr-2">
+          <ul className="list-disc space-y-2 text-slate-700 text-sm md:text-base text-left pl-5 pr-2">
             {experience?.points?.map((point, i) => (
               <motion.li
                 key={i}
@@ -152,15 +152,17 @@ export default function ExperienceCard({ experience, index = 0 }: Props) {
 
       {/* Expand/Collapse Indicator */}
       <motion.div
-        className="text-xs text-slate-400 uppercase tracking-widest pt-2"
-        animate={{ opacity: [0.5, 1, 0.5] }}
+        className="flex items-center gap-2 text-xs text-slate-600 uppercase tracking-widest pt-2"
+        animate={{ opacity: [0.7, 1, 0.7] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        {experience?.points && experience.points.length > 0
-          ? isExpanded
-            ? "Click to collapse"
-            : "Click to expand"
-          : ""}
+        <span>
+          {experience?.points && experience.points.length > 0
+            ? isExpanded
+              ? "− Click to collapse"
+              : "+ Click to expand"
+            : ""}
+        </span>
       </motion.div>
     </motion.article>
   );

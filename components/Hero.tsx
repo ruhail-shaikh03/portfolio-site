@@ -32,7 +32,7 @@ export default function Hero({ pageInfo }: Props) {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
-        className="relative rounded-full h-32 w-32 mx-auto object-cover border-2 border-cyan-500/30 shadow-glow-lg z-10"
+        className="relative rounded-full h-32 w-32 mx-auto object-cover border-2 border-mint-green/30 shadow-glow-lg z-10"
         src={pageInfo?.heroImage ? urlFor(pageInfo.heroImage).url() : ""}
         alt={pageInfo?.name}
       />
@@ -43,12 +43,12 @@ export default function Hero({ pageInfo }: Props) {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="z-20"
       >
-        <h2 className="text-sm uppercase text-cyan-400 pb-2 tracking-[10px] md:tracking-[15px] font-medium">
+        <h2 className="text-sm uppercase text-mint-green pb-2 tracking-[12px] md:tracking-[18px] font-medium">
           {pageInfo?.role}
         </h2>
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold px-4 md:px-10 text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-aqua-300 to-cyan-300">
-          <span className="mr-3">{mounted ? text : initial}</span>
-          {mounted ? <Cursor cursorColor="#00D9FF" cursorStyle="█" /> : null}
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold px-4 md:px-10 text-ice-white leading-tight">
+          <span className="mr-1">{mounted ? text : initial}</span>
+          {mounted ? <Cursor cursorColor="#64FFDA" cursorStyle="█" /> : null}
         </h1>
 
         <motion.div
@@ -61,7 +61,7 @@ export default function Hero({ pageInfo }: Props) {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-2 md:py-3 border-2 border-cyan-500/50 rounded-full uppercase text-xs md:text-sm tracking-widest text-cyan-300 font-medium transition-all duration-300 hover:text-white hover:border-cyan-400 hover:shadow-glow-sm backdrop-blur-sm bg-cyan-500/5"
+              className="px-6 md:px-8 py-2 md:py-3 border-2 border-mint-green/50 rounded-full uppercase text-xs md:text-sm tracking-widest text-ice-white font-medium transition-all duration-300 hover:text-text-dark hover:border-mint-green hover:bg-mint-green hover:shadow-glow-sm backdrop-blur-sm bg-navy-light/50"
             >
               About
             </motion.button>
@@ -70,7 +70,7 @@ export default function Hero({ pageInfo }: Props) {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-2 md:py-3 border-2 border-cyan-500/50 rounded-full uppercase text-xs md:text-sm tracking-widest text-cyan-300 font-medium transition-all duration-300 hover:text-white hover:border-cyan-400 hover:shadow-glow-sm backdrop-blur-sm bg-cyan-500/5"
+              className="px-6 md:px-8 py-2 md:py-3 border-2 border-mint-green/50 rounded-full uppercase text-xs md:text-sm tracking-widest text-ice-white font-medium transition-all duration-300 hover:text-text-dark hover:border-mint-green hover:bg-mint-green hover:shadow-glow-sm backdrop-blur-sm bg-navy-light/50"
             >
               Experience
             </motion.button>
@@ -79,7 +79,7 @@ export default function Hero({ pageInfo }: Props) {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-2 md:py-3 border-2 border-cyan-500/50 rounded-full uppercase text-xs md:text-sm tracking-widest text-cyan-300 font-medium transition-all duration-300 hover:text-white hover:border-cyan-400 hover:shadow-glow-sm backdrop-blur-sm bg-cyan-500/5"
+              className="px-6 md:px-8 py-2 md:py-3 border-2 border-mint-green/50 rounded-full uppercase text-xs md:text-sm tracking-widest text-ice-white font-medium transition-all duration-300 hover:text-text-dark hover:border-mint-green hover:bg-mint-green hover:shadow-glow-sm backdrop-blur-sm bg-navy-light/50"
             >
               Skills
             </motion.button>
@@ -88,7 +88,7 @@ export default function Hero({ pageInfo }: Props) {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-2 md:py-3 border-2 border-cyan-500/50 rounded-full uppercase text-xs md:text-sm tracking-widest text-cyan-300 font-medium transition-all duration-300 hover:text-white hover:border-cyan-400 hover:shadow-glow-sm backdrop-blur-sm bg-cyan-500/5"
+              className="px-6 md:px-8 py-2 md:py-3 border-2 border-mint-green/50 rounded-full uppercase text-xs md:text-sm tracking-widest text-ice-white font-medium transition-all duration-300 hover:text-text-dark hover:border-mint-green hover:bg-mint-green hover:shadow-glow-sm backdrop-blur-sm bg-navy-light/50"
             >
               Projects
             </motion.button>

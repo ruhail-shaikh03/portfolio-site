@@ -18,6 +18,14 @@ module.exports = {
         grayColor: "#22262D",
         yellowColor: "#FFE033",
         
+        // "The Blueprint" palette - Dark Navy & Mint Green
+        'navy-dark': '#0A192F',
+        'navy-light': '#112240',
+        'ice-white': '#CCD6F6',
+        'mint-green': '#64FFDA',
+        'text-medium': '#8892b0',
+        'text-dark': '#0A192F',
+        
         // New futuristic palette for AI Engineer identity
         cyan: {
           50: "#F0FFFE",
