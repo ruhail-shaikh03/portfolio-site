@@ -1,55 +1,167 @@
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useState } from "react";
 import { urlFor } from "../sanity";
 import { Experience } from "../typings";
+import { 
+  cardHoverVariants, 
+  fadeInUpVariants,
+  containerVariants 
+} from "../hooks/useMotionVariants";
 
-type Props = { experience: Experience };
+type Props = { experience: Experience; index?: number };
 
-export default function ExperienceCard({ experience }: Props) {
+export default function ExperienceCard({ experience, index = 0 }: Props) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
-    <article className="flex flex-col rounded-3xl items-center space-y-4 flex-shrink-0 w-[300px] md:w-[500px] xl:w-[600px] snap-center bg-white bg-gradient-to-tr from-white to-darkGreen/20 p-6 md:p-8 transition-opacity duration-200">
-      <motion.img
-        initial={false}
-        whileInView={{ opacity: 1, y: 0 }}
+    <motion.article
+      className="relative flex flex-col rounded-2xl items-center space-y-4 flex-shrink-0 w-full sm:w-[320px] md:w-[450px] lg:w-[550px] snap-center p-6 md:p-8 glass-effect group cursor-pointer"
+      variants={cardHoverVariants}
+      initial="rest"
+      whileHover="hover"
+      custom={index}
+      onClick={() => setIsExpanded(!isExpanded)}
+      layout
+    >
+      {/* Gradient accent background */}
+      <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-aqua-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      {/* Company Logo */}
+      <motion.div
+        className="relative"
+        whileHover={{ scale: 1.1, rotate: 5 }}
+      >
+        <motion.img
+          className="w-20 h-20 md:w-28 md:h-28 rounded-full object-cover border-2 border-cyan-500/50 shadow-glow-md"
+          src={experience?.companyImage ? urlFor(experience.companyImage).url() : ""}
+          alt={`${experience?.company} logo`}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        />
+        {experience.isCurrentlyWorkingHere && (
+          <motion.div
+            className="absolute bottom-0 right-0 px-2 py-1 bg-emerald-500 text-white text-xs rounded-full font-semibold"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            Current
+          </motion.div>
+        )}
+      </motion.div>
+
+      {/* Content Section */}
+      <motion.div
+        className="w-full text-center space-y-3"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true }}
-        transition={{ duration: 1.2 }}
-        className="w-24 h-24 rounded-full xl:w-[150px] xl:h-[150px] object-cover object-center"
-        src={experience?.companyImage ? urlFor(experience.companyImage).url() : ""}
-        alt={`${experience?.company} logo`}
-      />
-      <div className="w-full px-0 md:px-5">
-        <div className="text-center">
-          <h4 className="text-xl md:text-2xl font-light text-black">
-            {experience?.jobTitle}
-          </h4>
-          <p className="font-bold text-lg md:text-xl mt-1 text-lightGreen">
-            {experience?.company}
-          </p>
-          <p className="uppercase py-3 text-gray-500 text-sm">
-            {new Date(experience?.dateStarted).toLocaleDateString()} -{" "}
-            {experience.isCurrentlyWorkingHere
-              ? "Present"
-              : new Date(experience?.dateEnded).toLocaleDateString()}
-          </p>
-        </div>
-        <div className="flex justify-center space-x-2 my-2">
-          {experience?.technologies?.map((technology) => (
+      >
+        {/* Job Title */}
+        <motion.h4
+          variants={fadeInUpVariants}
+          className="text-xl md:text-2xl font-bold text-white"
+        >
+          {experience?.jobTitle}
+        </motion.h4>
+
+        {/* Company Name */}
+        <motion.p
+          variants={fadeInUpVariants}
+          className="text-base md:text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-aqua-400"
+        >
+          {experience?.company}
+        </motion.p>
+
+        {/* Date Range */}
+        <motion.p
+          variants={fadeInUpVariants}
+          className="text-sm text-slate-400 uppercase tracking-wider"
+        >
+          {new Date(experience?.dateStarted).toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "short",
+          })}{" "}
+          -{" "}
+          {experience.isCurrentlyWorkingHere
+            ? "Present"
+            : new Date(experience?.dateEnded).toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "short",
+              })}
+        </motion.p>
+      </motion.div>
+
+      {/* Technologies Grid */}
+      <motion.div
+        className="flex flex-wrap justify-center gap-3"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        {experience?.technologies?.map((technology, idx) => (
+          <motion.div
+            key={technology._id}
+            className="relative"
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.05 }}
+            whileHover={{ scale: 1.2, rotate: 10 }}
+          >
             <img
-              key={technology._id}
-              className="h-8 w-8 rounded-full object-cover"
+              className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border border-cyan-500/30 shadow-glow-sm hover:shadow-glow-md transition-all duration-300"
               src={technology?.image ? urlFor(technology.image).url() : ""}
               alt={technology.title}
+              title={technology.title}
             />
-          ))}
-        </div>
-      </div>
-      <div className="w-full max-h-48 md:max-h-40 overflow-y-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-darkGreen/80 px-4 md:px-6">
-        <ul className="list-disc space-y-2 text-black text-sm md:text-base text-left pl-5">
-          {experience?.points?.map((point, i) => (
-            <li key={i}>{point}</li>
-          ))}
-        </ul>
-      </div>
-    </article>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Achievements Points */}
+      <motion.div
+        className="w-full"
+        animate={{ height: isExpanded ? "auto" : "0px" }}
+        transition={{ duration: 0.3 }}
+        style={{ overflow: "hidden" }}
+      >
+        <motion.div
+          className="max-h-64 overflow-y-auto scrollbar-thin pt-4"
+          variants={containerVariants}
+        >
+          <ul className="list-disc space-y-2 text-slate-300 text-sm md:text-base text-left pl-5 pr-2">
+            {experience?.points?.map((point, i) => (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.05 }}
+                className="leading-relaxed"
+              >
+                {point}
+              </motion.li>
+            ))}
+          </ul>
+        </motion.div>
+      </motion.div>
+
+      {/* Expand/Collapse Indicator */}
+      <motion.div
+        className="text-xs text-slate-400 uppercase tracking-widest pt-2"
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        {experience?.points && experience.points.length > 0
+          ? isExpanded
+            ? "Click to collapse"
+            : "Click to expand"
+          : ""}
+      </motion.div>
+    </motion.article>
   );
 }
