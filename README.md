@@ -1,50 +1,154 @@
-# Ruhail's Portfolio Website
+# 🚀 Ruhail's AI Engineer Portfolio
 
+A modern, professional portfolio website with Next.js, TypeScript, Framer Motion, and Sanity CMS.
 
+**Live:** https://RuhailellRizwan.com
 
-I wanted to learn more about Next JS, Typescript, Framer Motion and Tailwind and so I used my portfolio website as an opportunity to do this. The website was originally inspired by a YouTube video by Sonny Sangha, and over time has morphed into something I am quite proud of. The portfolio uses Sanity as backend, so that it can update the information without rebuilding the application.
+---
 
-Want to see it in action? You can find the website [here](https://RuhailellRizwan.com)!
+## 📋 Quick Start
 
-# Next JS:
+### Prerequisites
+- Node.js 16+, npm/yarn, Sanity account
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Running the code
-
-First, run the development server:
+### Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
+# Install dependencies
+npm install
+cd sanity && npm install && cd ..
+
+# Create .env.local (add your Sanity Project ID)
+cp .env.example .env.local
+
+# Run development servers
+npm run dev                  # Terminal 1: Frontend (localhost:3000)
+cd sanity && npm run start   # Terminal 2: CMS (localhost:3333)
+
+# Production
+npm run build
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- **Next.js 13** | **React 18** | **TypeScript 4.8**
+- **Tailwind CSS 3.3** | **Framer Motion 7.6**
+- **Sanity 2.35** | **React Hook Form 7.39**
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+---
 
-# Vercel:
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-# Sanity:
-
-To just run sanity:
+## 📁 Structure
 
 ```
-cd sanity
-sanity start
+components/    → About, Hero, Skills, Projects, Contact
+pages/         → index.tsx + API routes
+hooks/         → useMotionVariants (animations)
+utils/         → Sanity data fetchers
+styles/        → globals.css + Tailwind
+sanity/        → CMS schemas & config
 ```
 
-To deploy sanity:
+---
 
+## 🎨 Design - "The Blueprint"
+
+**Colors:** Navy Dark #0A192F | Mint Green #64FFDA | Ice White #CCD6F6
+
+**Alternating Sections:** Hero/About/Skills/Contact (dark) ↔ Experience/Projects (light)
+
+---
+
+## ⚙️ Environment
+
+`.env.local`:
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_id
+NEXT_PUBLIC_SANITY_DATASET=production
 ```
-sanity deploy
+
+Get from [sanity.io/manage](https://sanity.io/manage)
+
+---
+
+## 📝 Content Management
+
+Access Sanity Studio at `http://localhost:3333`
+
+Add:
+- **Experience** - Job title, company, dates, tech, achievements
+- **Projects** - Title, image, description, link
+- **Skills** - Name, icon, proficiency (0-100)
+- **Page Info** - Bio, images, contact
+
+---
+
+## 🚀 Deploy
+
+### Vercel
+```bash
+git push origin main
+# Vercel auto-deploys, add env vars in dashboard
 ```
+
+### Sanity
+```bash
+cd sanity && sanity deploy
+```
+
+---
+
+## 📊 Analytics
+
+Google Analytics: `G-VS643WZDTS`
+
+View at [analytics.google.com](https://analytics.google.com/)
+
+Change in `pages/index.tsx` lines 58-69
+
+---
+
+## 🔧 Commands
+
+```bash
+npm run dev      # Development
+npm run build    # Build
+npm run start    # Production
+npm run lint     # Linting
+```
+
+---
+
+## 🔍 Customization
+
+**Colors:** Edit `tailwind.config.js`
+
+**Fonts:** Update `styles/globals.css` imports + `tailwind.config.js`
+
+**Sections:** Create component → import in `pages/index.tsx` → add to Header
+
+**Animations:** Modify `hooks/useMotionVariants.ts`
+
+---
+
+## ⚠️ Troubleshooting
+
+| Issue | Fix |
+|-------|-----|
+| Module errors | `rm -rf node_modules && npm install` |
+| Sanity fails | Check `.env.local` + API settings |
+| Images broken | Verify Sanity uploads |
+| Port taken | `npm run dev -- -p 3001` |
+| Build fails | `npx eslint --fix .` |
+
+---
+
+## 📚 Resources
+
+[Next.js](https://nextjs.org/docs) | [Tailwind](https://tailwindcss.com) | [Framer Motion](https://www.framer.com/motion) | [Sanity](https://sanity.io/docs)
+
+---
+
+**Author:** Ruhail Shaikh | **Email:** Ruhailrizwan@gmail.com | **Status:** ✅ Production Ready
