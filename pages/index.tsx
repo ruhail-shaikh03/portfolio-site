@@ -55,17 +55,17 @@ const Home = ({ pageInfo, experiences, projects, skills, socials }: Props) => {
         <title>{"Ruhail's Portfolio"}</title>
       </Head>
 
-      {/* Google Analytics */}
+      {/* Google tag (gtag.js) */}
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-LV1LN9VBT0"
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-VS643WZDTS"
         strategy="afterInteractive"
       ></Script>
       <Script id="google-analytics" strategy="afterInteractive">
         {`window.dataLayer = window.dataLayer || [];
            function gtag(){dataLayer.push(arguments);}
            gtag('js', new Date());
-           gtag('config', 'G-LV1LN9VBT0')`}
-        ;
+           gtag('config', 'G-VS643WZDTS');`}
       </Script>
 
       {/* Header */}
