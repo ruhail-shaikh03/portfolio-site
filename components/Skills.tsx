@@ -58,7 +58,7 @@ export default function Skills({ skills }: Props) {
             variants={fadeInUpVariants}
             className="text-base md:text-lg text-text-medium mt-4 max-w-2xl mx-auto"
           >
-            A comprehensive toolkit of technologies and frameworks I've mastered throughout my career
+            A comprehensive toolkit of technologies and frameworks I&apos;ve mastered throughout my career
           </motion.p>
         </motion.div>
 

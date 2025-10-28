@@ -99,10 +99,10 @@ export default function ContactMe({ pageInfo }: Props) {
             Get In Touch
           </p>
           <h2 className="text-2xl md:text-4xl lg:text-5xl lg:text-6xl font-bold text-ice-white leading-tight mb-2 md:mb-4">
-            Let's work <span className="text-mint-green">together</span>
+            Let&apos;s work <span className="text-mint-green">together</span>
           </h2>
           <p className="text-xs md:text-base lg:text-lg text-text-medium max-w-2xl mx-auto px-2">
-            I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
+            I&apos;m always interested in hearing about new projects and opportunities. Feel free to reach out!
           </p>
         </motion.div>
 

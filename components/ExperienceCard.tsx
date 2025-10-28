@@ -113,6 +113,7 @@ export default function ExperienceCard({ experience, index = 0 }: Props) {
             transition={{ delay: idx * 0.05 }}
             whileHover={{ scale: 1.2, rotate: 10 }}
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border border-cyan-500/30 shadow-glow-sm hover:shadow-glow-md transition-all duration-300"
               src={technology?.image ? urlFor(technology.image).url() : ""}

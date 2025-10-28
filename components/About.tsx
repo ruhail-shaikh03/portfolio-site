@@ -1,5 +1,6 @@
 import { motion, useViewportScroll, useTransform } from "framer-motion";
 import React, { useState } from "react";
+import Image from "next/image";
 import { urlFor } from "../sanity";
 import { PageInfo } from "../typings";
 import { 
@@ -130,6 +131,7 @@ export default function About({ pageInfo }: Props) {
                 }
                 transition={{ duration: 0.3 }}
               >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   className="w-full max-w-md md:max-w-lg lg:max-w-2xl h-auto object-cover max-h-[650px]"
                   src={pageInfo?.profilePic ? urlFor(pageInfo.profilePic).url() : ""}
