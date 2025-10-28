@@ -1,8 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Satoshi:wght@400;500;600;700&display=swap");
+
+:root {
+  --font-space-grotesk: "Space Grotesk", system-ui, sans-serif;
+  --font-satoshi: "Satoshi", system-ui, sans-serif;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Add the scrollbar-hide utility manually */
+/* ===== BASE STYLES ===== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-navy-dark text-text-medium;
+    font-family: var(--font-satoshi);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-space-grotesk);
+    @apply font-semibold tracking-tight;
+  }
+
+  /* Selection styles */
+  ::selection {
+    @apply bg-mint-green text-text-dark;
+  }
+
+  ::-moz-selection {
+    @apply bg-mint-green text-text-dark;
+  }
+}
+
+/* ===== SCROLLBAR STYLES ===== */
 @layer utilities {
   .scrollbar-hide {
     /* Firefox */
@@ -12,14 +46,224 @@
       display: none;
     }
   }
+
+  /* Custom scrollbar styling */
+  .scrollbar-thin {
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 217, 255, 0.3);
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background: rgba(0, 217, 255, 0.6);
+      }
+    }
+  }
 }
 
+/* ===== COMPONENT STYLES ===== */
 @layer components {
+  /* ===== BUTTONS ===== */
   .heroButton {
-    @apply px-3 md:px-6 py-2 border border-lightBackground rounded-full uppercase text-xs tracking-widest text-gray-500 transition-all hover:border-darkGreen/40 hover:text-darkGreen/40;
+    @apply px-3 md:px-6 py-2 border border-slate-400 rounded-full uppercase text-xs tracking-widest text-slate-600 transition-all duration-300 hover:border-cyan-400 hover:text-cyan-400 hover:shadow-glow-sm;
   }
 
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium text-white transition-all duration-300;
+    @apply bg-gradient-to-r from-cyan-500 to-aqua-500 hover:shadow-glow-lg active:scale-95;
+    @apply hover:from-cyan-400 hover:to-aqua-400;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-lg font-medium text-cyan-400 border border-cyan-500/50;
+    @apply hover:bg-cyan-500/10 hover:border-cyan-400 transition-all duration-300;
+  }
+
+  .btn-ghost {
+    @apply px-6 py-3 font-medium text-slate-600 rounded-lg transition-all duration-300;
+    @apply hover:text-white hover:bg-white/5;
+  }
+
+  /* ===== INPUTS ===== */
   .contactInput {
-    @apply outline-none bg-slate-400/20 rounded-lg border-b-2 px-6 py-3 md:py-4  text-gray-500 placeholder-gray-500 transition-all focus:border-darkGreen/20 focus:text-darkGreen/80 hover:border-darkGreen/20;
+    @apply outline-none bg-slate-400/10 rounded-lg border border-slate-600/30 px-6 py-3 md:py-4;
+    @apply text-slate-100 placeholder-slate-400 transition-all duration-300;
+    @apply focus:border-cyan-500/50 focus:shadow-glow-sm;
+    @apply hover:border-slate-500/50;
+  }
+
+  .input-glow {
+    @apply outline-none rounded-lg border border-mint-green/30 px-4 py-3 transition-all duration-300;
+    @apply bg-navy-light text-ice-white placeholder-text-medium;
+    @apply focus:border-mint-green focus:ring-2 focus:ring-mint-green/50 focus:bg-navy-light/80;
+  }
+
+  .textarea-glow {
+    @apply outline-none rounded-lg border border-mint-green/30 px-4 py-3 transition-all duration-300;
+    @apply bg-navy-light text-ice-white placeholder-text-medium resize-none;
+    @apply focus:border-mint-green focus:ring-2 focus:ring-mint-green/50 focus:bg-navy-light/80;
+  }
+
+  /* ===== GLASS MORPHISM UTILITIES (shortcuts) ===== */
+  /* These are defined properly in the utilities layer below */
+
+  /* ===== GRADIENT UTILITIES ===== */
+  .gradient-text {
+    @apply bg-gradient-to-r from-cyan-400 to-aqua-400 bg-clip-text text-transparent;
+  }
+
+  .gradient-text-reverse {
+    @apply bg-gradient-to-r from-aqua-400 to-cyan-400 bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(to right, #0A0E27, #0A0E27) padding-box;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  /* ===== GLOW EFFECTS ===== */
+  .glow-cyan {
+    @apply shadow-glow-base;
+  }
+
+  .glow-aqua {
+    @apply shadow-glow-aqua;
+  }
+
+  .glow-hover {
+    @apply hover:shadow-glow-lg hover:text-cyan-300 transition-all duration-300;
+  }
+
+  /* ===== TEXT UTILITIES ===== */
+  .text-gradient {
+    @apply bg-gradient-to-r from-cyan-300 via-aqua-300 to-cyan-300 bg-clip-text text-transparent;
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  .text-underline-gradient {
+    position: relative;
+    display: inline-block;
+  }
+
+  .text-underline-gradient::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #00D9FF, #64FFDA);
+    transition: width 0.5s ease;
+  }
+
+  .text-underline-gradient:hover::after {
+    width: 100%;
+  }
+
+  /* ===== LAYOUT UTILITIES ===== */
+  .section-padding {
+    @apply px-4 sm:px-6 md:px-8 lg:px-10;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+
+  /* ===== BACKDROP EFFECTS ===== */
+  .blur-sm {
+    backdrop-filter: blur(4px);
+  }
+
+  .blur-md {
+    backdrop-filter: blur(12px);
+  }
+
+  .blur-lg {
+    backdrop-filter: blur(20px);
+  }
+
+  /* ===== BACKDROP FILTERS FOR GLASSMORPHISM ===== */
+  .backdrop-glass {
+    @apply backdrop-blur-md bg-white bg-opacity-5 border border-white border-opacity-10;
+  }
+
+  .backdrop-glass-dark {
+    @apply backdrop-blur-md bg-black bg-opacity-20 border border-white border-opacity-5;
+  }
+
+  /* ===== ANIMATION UTILITIES ===== */
+  .animate-float {
+    @apply animate-float;
+  }
+
+  .animate-pulse-glow {
+    @apply animate-pulse-glow;
+  }
+
+  .animate-shimmer {
+    @apply animate-shimmer;
+  }
+
+  .animate-gradient {
+    @apply animate-gradient-shift;
+  }
+
+  /* ===== RESPONSIVE UTILITIES ===== */
+  @media (max-width: 768px) {
+    .hide-on-mobile {
+      display: none;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .show-only-mobile {
+      display: none;
+    }
+  }
+
+  /* ===== ACCESSIBILITY ===== */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ===== FIXED GLASS EFFECT UTILITIES ===== */
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/10 border border-white/10 shadow-md rounded-2xl;
+  }
+
+  .glass-effect-lg {
+    @apply backdrop-blur-xl bg-white/10 border border-white/10 shadow-lg rounded-3xl;
+  }
+
+  /* ===== OVERRIDE GLASS-DARK ===== */
+  .glass-dark {
+    @apply backdrop-blur-md bg-navy-900/70 border border-white/10 shadow-inner rounded-2xl;
   }
 }

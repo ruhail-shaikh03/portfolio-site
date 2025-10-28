@@ -26,21 +26,33 @@ export default function WorkExperience({ experiences }: Props) {
       initial={false}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="h-screen flex relative overflow-hidden flex-col text-left md:flex-row max-w-full px-10 justify-evenly md:justify-start mx-auto items-center"
+      className="relative flex flex-col text-left max-w-full px-10 justify-start mx-auto items-center py-12 min-h-fit bg-white"
     >
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl text-center w-full">
-        Experience
-      </h3>
+      {/* Section Header */}
+      <motion.div
+        className="text-center mb-10 w-full"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <p className="text-xs md:text-sm uppercase tracking-[3px] text-cyan-500 font-semibold mb-4">
+          Professional Journey
+        </p>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800">
+          Work <span className="text-cyan-500">Experience</span>
+        </h2>
+      </motion.div>
 
-      <div className="relative w-full flex items-center justify-center mt-10 md:mt-40">
+      <div className="relative w-full flex items-center justify-center">
         <ChevronLeftIcon
-          className="absolute left-[-20px] md:left-[-10px] top-1/2 transform -translate-y-1/2 h-8 w-8 md:h-10 md:w-10 text-gray-400 cursor-pointer z-30 hover:text-darkGreen transition-colors duration-200"
+          className="absolute left-[-20px] md:left-[-10px] top-1/2 transform -translate-y-1/2 h-8 w-8 md:h-10 md:w-10 text-cyan-500 cursor-pointer z-30 hover:text-cyan-400 transition-colors duration-200"
           onClick={() => scroll("left")}
         />
 
         <div
           ref={scrollRef}
-          className="w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar-hide"
+          className="w-full flex space-x-5 overflow-x-scroll p-4 md:p-6 snap-x snap-mandatory scrollbar-hide"
         >
           {experiences
             ?.slice()
@@ -55,7 +67,7 @@ export default function WorkExperience({ experiences }: Props) {
         </div>
 
         <ChevronRightIcon
-          className="absolute right-[-20px] md:right-[-10px] top-1/2 transform -translate-y-1/2 h-8 w-8 md:h-10 md:w-10 text-gray-400 cursor-pointer z-30 hover:text-darkGreen transition-colors duration-200"
+          className="absolute right-[-20px] md:right-[-10px] top-1/2 transform -translate-y-1/2 h-8 w-8 md:h-10 md:w-10 text-cyan-500 cursor-pointer z-30 hover:text-cyan-400 transition-colors duration-200"
           onClick={() => scroll("right")}
         />
       </div>
