@@ -114,7 +114,6 @@ export default function Header({ socials }: Props) {
         </motion.div>
       </div>
 
-
     </motion.header>
   );
 }

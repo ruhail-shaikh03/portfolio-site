@@ -51,49 +51,7 @@ export default function Hero({ pageInfo }: Props) {
           {mounted ? <Cursor cursorColor="#64FFDA" cursorStyle="█" /> : null}
         </h1>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="pt-8 flex flex-wrap gap-4 justify-center"
-        >
-          <Link href="#about">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-2 md:py-3 border-2 border-mint-green/50 rounded-full uppercase text-xs md:text-sm tracking-widest text-ice-white font-medium transition-all duration-300 hover:text-text-dark hover:border-mint-green hover:bg-mint-green hover:shadow-glow-sm backdrop-blur-sm bg-navy-light/50"
-            >
-              About
-            </motion.button>
-          </Link>
-          <Link href="#experience">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-2 md:py-3 border-2 border-mint-green/50 rounded-full uppercase text-xs md:text-sm tracking-widest text-ice-white font-medium transition-all duration-300 hover:text-text-dark hover:border-mint-green hover:bg-mint-green hover:shadow-glow-sm backdrop-blur-sm bg-navy-light/50"
-            >
-              Experience
-            </motion.button>
-          </Link>
-          <Link href="#skills">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-2 md:py-3 border-2 border-mint-green/50 rounded-full uppercase text-xs md:text-sm tracking-widest text-ice-white font-medium transition-all duration-300 hover:text-text-dark hover:border-mint-green hover:bg-mint-green hover:shadow-glow-sm backdrop-blur-sm bg-navy-light/50"
-            >
-              Skills
-            </motion.button>
-          </Link>
-          <Link href="#projects">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-2 md:py-3 border-2 border-mint-green/50 rounded-full uppercase text-xs md:text-sm tracking-widest text-ice-white font-medium transition-all duration-300 hover:text-text-dark hover:border-mint-green hover:bg-mint-green hover:shadow-glow-sm backdrop-blur-sm bg-navy-light/50"
-            >
-              Projects
-            </motion.button>
-          </Link>
-        </motion.div>
+
       </motion.div>
     </div>
   );
