@@ -2,6 +2,7 @@ export default {
   name: 'experience',
   title: 'Experience',
   type: 'document',
+  __experimental_actions: ['update', 'create', 'publish', 'delete'],
   fields: [
     {
       name: 'jobTitle',

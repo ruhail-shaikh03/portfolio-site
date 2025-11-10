@@ -2,6 +2,7 @@ export default {
   name: 'skill',
   title: 'Skill',
   type: 'document',
+  __experimental_actions: ['update', 'create', 'publish', 'delete'],
   fields: [
     {
       name: 'title',

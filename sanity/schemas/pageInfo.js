@@ -2,6 +2,7 @@ export default {
   name: 'pageInfo',
   title: 'PageInfo',
   type: 'document',
+  __experimental_actions: ['update', 'create', 'publish', 'delete'],
   fields: [
     {
       name: 'name',

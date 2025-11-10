@@ -2,6 +2,7 @@ export default {
   name: 'social',
   title: 'Social',
   type: 'document',
+  __experimental_actions: ['update', 'create', 'publish', 'delete'],
   fields: [
     {
       name: 'title',

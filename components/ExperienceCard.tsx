@@ -40,16 +40,6 @@ export default function ExperienceCard({ experience, index = 0 }: Props) {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         />
-        {experience.isCurrentlyWorkingHere && (
-          <motion.div
-            className="absolute bottom-0 right-0 px-2 py-1 bg-emerald-500 text-white text-xs rounded-full font-semibold"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            Current
-          </motion.div>
-        )}
       </motion.div>
 
       {/* Content Section */}
